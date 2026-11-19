@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muzium Negara Indoor Guide</title>
+<style>
+:root{--bg:#eef3f1;--card:#fff;--ink:#12312f;--mute:#4d6b68;--line:#c5d6d2;--floor:#f8fbfa;--wall:#12312f;--acc:#a97a1f;--accT:#fff;--fac:#d3e0dd;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1c1b;--card:#162a28;--ink:#e4efec;--mute:#9bb8b3;--line:#2c4744;--floor:#12211f;--wall:#7fb5ac;--acc:#e0b04f;--accT:#1b1405;--fac:#26403d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1c1b;--card:#162a28;--ink:#e4efec;--mute:#9bb8b3;--line:#2c4744;--floor:#12211f;--wall:#7fb5ac;--acc:#e0b04f;--accT:#1b1405;--fac:#26403d;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px 14px 40px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+h1{font:600 28px/1.15 Georgia,"Times New Roman",serif;margin:0}
+.sub{color:var(--mute);margin:4px 0 0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,g:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button{border:0;background:none;padding:6px 12px}
+.lang .on{background:var(--ink);color:var(--bg)}
+nav{display:flex;gap:8px;overflow-x:auto;padding:16px 0 12px}
+nav button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px}
+nav .on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.note{font-size:14px;color:var(--mute);margin:0 0 10px}
+.map{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+svg{min-width:740px;width:100%;display:block}
+.fl{fill:var(--floor);stroke:var(--wall);stroke-width:6}
+.gr{stroke:var(--line);stroke-width:1.5;stroke-dasharray:8 8}
+.pin{cursor:pointer}
+.pin .b{fill:var(--acc);stroke:var(--card);stroke-width:4}
+.pin .f{fill:var(--fac);stroke:var(--wall);stroke-width:2}
+.pin text{text-anchor:middle;font:700 19px system-ui,sans-serif;fill:var(--accT)}
+.pin .f+text{fill:var(--ink);font-size:15px}
+.pin.sel .b,.pin.sel .f{stroke:var(--ink);stroke-width:6}
+h2{font:600 19px Georgia,serif;margin:22px 0 8px}
+ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+li button{width:100%;text-align:left;display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 12px}
+.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--acc);color:var(--accT);display:grid;place-items:center;font-weight:700;font-size:14px}
+.n.fc{background:var(--fac);color:var(--ink);font-size:12px;border-radius:8px}
+#sheet{position:fixed;left:0;right:0;bottom:0;max-height:72vh;overflow:auto;background:var(--card);border-top:3px solid var(--acc);border-radius:16px 16px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.25);padding:18px 18px calc(22px + env(safe-area-inset-bottom,0px));z-index:5}
+#sheet[hidden]{display:none}
+#sheet h3{font:600 24px/1.2 Georgia,serif;margin:0 40px 2px 0}
+#sheet h4{margin:16px 0 2px;font-size:15px}
+#sheet p{margin:0;color:var(--mute);max-width:60ch}
+#x{position:absolute;top:12px;right:14px;border:1px solid var(--line);background:none;border-radius:999px;padding:4px 12px}
+.tag{font-size:14px;color:var(--acc);margin:0 0 8px;font-weight:600}
+footer{margin-top:30px;color:var(--mute);font-size:13px}
+#q{width:100%;margin-top:14px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}#res{margin-top:8px}.nv{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.nv button{border:1px solid var(--line);background:none;border-radius:999px;padding:8px 14px}.nv button[data-v]{background:var(--ink);color:var(--bg);border-color:var(--ink)}.intro{margin:0 0 10px;max-width:64ch}#sheet a{color:var(--acc)}.pin.v .b{opacity:.55}
+.rt{fill:none;stroke:var(--ink);stroke-width:5;stroke-dasharray:12 9;stroke-linecap:round;stroke-linejoin:round;opacity:.45;pointer-events:none}.rt.on{opacity:1;stroke-width:7}.rs{fill:var(--card);stroke:var(--ink);stroke-width:5;pointer-events:none}.re{fill:var(--ink);pointer-events:none}
+#rp .rr{display:grid;gap:8px;margin-top:8px}#rp select{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}#rg{background:var(--ink);color:var(--bg);border-color:var(--ink)}#ro{grid-template-columns:1fr;margin-top:10px}#ro button.on{border:2px solid var(--acc)}
+</style></head><body><main>
+<header><div><h1 id="t"></h1><p class="sub" id="s"></p></div>
+<div class="lang"><button data-l="bm">BM</button><button data-l="en">EN</button></div></header>
+<input id="q" type="search" autocomplete="off" aria-label="Search"><ul id="res"></ul><section id="rp"><h2 id="rh"></h2><div class="rr"><select id="rf" aria-label="From"></select><select id="rt" aria-label="To"></select></div><div class="nv"><button id="rg"></button><button id="rs"></button><button id="rc"></button></div><ul id="ro"></ul></section><p class="note" id="pg"></p><nav id="nav"></nav><p class="intro" id="intro"></p><p class="note" id="note"></p>
+<div class="map" id="map"></div>
+<h2 id="hx"></h2><ul id="ex"></ul>
+<h2 id="hf"></h2><ul id="fa"></ul>
+<footer>SULAM WIX2001, Universiti Malaya</footer>
+</main>
+<section id="sheet" hidden role="dialog" aria-live="polite"><button id="x"></button><div id="sc"></div></section>
+<script>
+const U={bm:{t:"Panduan Dalaman Muzium Negara",s:"Ketik pin untuk melihat maklumat pameran.",ex:"Pameran",fa:"Kemudahan",note:"Pelan ini ialah lukisan semula ringkas daripada pelan lantai rasmi. Kedudukan pin ialah anggaran.",cl:"Tutup",ab:"Tentang",ph:"Maklumat sejarah akan ditambah selepas disahkan oleh Muzium Negara.",kf:"Fakta utama",tl:"Garis masa",aw:"Menunggu kandungan daripada muzium.",fd:"Kemudahan ini ditunjukkan pada pelan lantai rasmi.",tx:"Pameran",tf:"Kemudahan",ne:"Tiada pameran dilabel pada pelan ini.",gp:"Kedudukan pameran di sini ialah tempat letak sementara sehingga disahkan di lokasi."},
+en:{t:"Muzium Negara Indoor Guide",s:"Tap a pin to see exhibit information.",ex:"Exhibits",fa:"Facilities",note:"This map is a simplified redraw of the official floor plans. Pin positions are approximate.",cl:"Close",ab:"About",ph:"Historical details will be added once verified by Muzium Negara.",kf:"Key facts",tl:"Timeline",aw:"Awaiting content from the museum.",fd:"This facility is shown on the official floor plan.",tx:"Exhibit",tf:"Facility",ne:"No exhibits are labelled on this plan.",gp:"Exhibit positions here are placeholders until verified on site."}};
+// marker: [x,y,abbr(0=exhibit),bm,en]
+const G=[
+{id:"dewan",bm:"Dewan Tengah",en:"Central Hall",c:9,r:4,m:[
+[120,230,"T","Kaunter Tiket","Ticket Counter"],[230,40,"AV","Bilik AV","AV Room"],[700,35,"S","Tangga","Staircase"],[700,425,"S","Tangga","Staircase"],[55,410,"L","Lif","Lift"],[55,90,"S","Tangga Lingkar (Naik)","Spiral Stairs (Up)"],[950,230,"S","Tangga Utama (Naik)","Main Stairs (Up)"],[900,70,"S","Tangga (Turun)","Stairs (Down)"],[900,400,"S","Tangga (Turun)","Stairs (Down)"]]},
+{id:"a",bm:"Galeri A",en:"Gallery A",c:11,r:6,m:[
+[147,164,0,"Hutan Khatulistiwa","Equatorial Forest"],[79,240,0,"Zaman Perm.","Zaman Perm. (as labelled)"],[440,140,0,"Jar Martaban","Martaban Jar"],[510,150,0,"Kubur dan Keranda","Burial and Coffin"],[477,258,0,"Diorama Rangka Perak Man dan Gua Cha","Perak Man Skeleton and Gua Cha Diorama"],[960,330,0,"Gua","Cave"],
+[55,63,"S","Tangga","Staircase"],[31,416,"DB","Bilik DB","DB Room"],[850,416,"AV","Bilik AV","AV Room"],[1040,195,"AC","Bilik Penyejuk Udara","Air Cool Room"]]},
+{id:"b",bm:"Galeri B",en:"Gallery B",c:11,r:6,m:[
+[144,50,0,"Diorama Mengaji","Quran Recitation Diorama"],[315,224,0,"Singgasana","Throne"],[475,218,0,"Salasilah Kesultanan","Sultanate Genealogy"],[177,397,0,"Diorama Hologram","Hologram Diorama"],[691,415,0,"Diorama Candi Borobudur","Borobudur Temple Diorama"],
+[55,247,"AHU","AHU","AHU"],[40,150,"AV","AV","AV"],[1050,415,"AV","Bilik AV","AV Room"],[962,50,"S","Tangga","Staircase"],[1028,276,"S","Tangga Naik / Turun","Stairs Up / Down"]]},
+{id:"c",bm:"Galeri C",en:"Gallery C",c:11,r:6,gp:1,m:[
+...["Perlayaran Portugis|Portuguese Voyages","Kedatangan Portugis|Arrival of the Portuguese","Peta Perlayaran|Voyage Map","Melaka Bertukar Tangan|Malacca Changes Hands","Gerbang Kota Kuala Kedah|Kota Kuala Kedah Gate","Kedatangan Inggeris ke Pulau Pinang|British Arrival in Penang","Perjanjian Pangkor|Pangkor Treaty","Kesan Kedatangan Kuasa Luar|Impact of Foreign Powers","Bijih Timah|Tin Ore","Ekonomi|Economy","Kapal Korek|Tin Dredge","Pendidikan|Education","Pendudukan Jepun|Japanese Occupation","Tokoh-Tokoh Pejuang Tanah Air|National Freedom Fighters"].map((s,i)=>{const p=s.split("|");return[130+(i%7)*140,i<7?120:330,0,p[0],p[1]]}),
+[1045,230,"X","Pintu Keluar","Exit"],[1045,60,"L","Lif","Lift"],[60,230,"R","Tanjakan (Turun)","Ramp (Down)"],[1045,400,"St","Stor","Store"]]},
+{id:"d",bm:"Galeri D",en:"Gallery D",c:11,r:6,m:[
+[550,230,0,"Bilik Tayangan","Screening Room"],[1045,60,"S","Tangga (Turun)","Staircase (Down)"]]}];
+// exhibit info keyed by English name: [EN, BM, dates, Wikipedia search term]. Sources: Wikipedia, Malay Mail, museum guides; to be verified by Muzium Negara.
+const D={"Equatorial Forest":["A tropical rainforest display, the setting for the early history told in Gallery A.","Paparan hutan hujan tropika, latar bagi sejarah awal yang diceritakan di Galeri A.","Prehistoric","Tropical rainforest"],
+"Zaman Perm. (as labelled)":["The label is abbreviated on the plan. Confirm the full name with the museum before publishing.","Label dipendekkan pada pelan. Sahkan nama penuh dengan muzium sebelum diterbitkan.","To confirm",""],
+"Martaban Jar":["Large glazed stoneware jars from the Martaban region of Myanmar, traded across Southeast Asia for storage and sometimes burials.","Tempayan batu besar berlaga dari kawasan Martaban, Myanmar, didagangkan di Asia Tenggara untuk simpanan dan kadangkala pengebumian.","Regional trade, pre-colonial","Martaban jar"],
+"Burial and Coffin":["Displays burial practices and coffins of early communities.","Memaparkan amalan pengebumian dan keranda masyarakat awal.","Prehistoric","Prehistoric Malaysia"],
+"Perak Man Skeleton and Gua Cha Diorama":["Perak Man is a skeleton about 11,000 years old, found in 1991 at Gua Gunung Runtuh, Lenggong. Gua Cha is a cave site in Kelantan with prehistoric burials.","Perak Man ialah rangka berusia kira-kira 11,000 tahun, ditemui pada 1991 di Gua Gunung Runtuh, Lenggong. Gua Cha ialah tapak gua di Kelantan dengan kubur prasejarah.","c. 11,000 years ago; found 1991","Perak Man"],
+"Cave":["A cave setting showing the shelters early people used for living and burial.","Suasana gua yang menunjukkan tempat berlindung manusia awal untuk tinggal dan mengebumikan si mati.","Prehistoric","Lenggong Valley"],
+"Quran Recitation Diorama":["A scene of Quran lessons, showing how Islamic learning took root in Malay society.","Babak pengajian Al-Quran yang menunjukkan bagaimana pembelajaran Islam berakar dalam masyarakat Melayu.","Malay kingdoms period","Islam in Malaysia"],
+"Throne":["A royal throne display, a symbol of authority in the Malay sultanates.","Paparan singgahsana diraja, lambang kuasa dalam kesultanan Melayu.","Malay sultanate era","Malacca Sultanate"],
+"Sultanate Genealogy":["A family-tree display tracing the lineages of Malay rulers.","Paparan salasilah yang menjejak keturunan pemerintah Melayu.","Melaka Sultanate, c. 1400-1511","Malacca Sultanate"],
+"Hologram Diorama":["A hologram-based diorama. Confirm its topic with the museum.","Diorama berasaskan hologram. Sahkan topiknya dengan muzium.","To confirm",""],
+"Borobudur Temple Diorama":["A model of Borobudur, the 9th-century Buddhist monument in Central Java, showing the Hindu-Buddhist heritage of the region.","Model Borobudur, monumen Buddha abad ke-9 di Jawa Tengah, yang menunjukkan warisan Hindu-Buddha di rantau ini.","9th century","Borobudur"],
+"Portuguese Voyages":["Traces the Portuguese sea routes to Asia that led them to Melaka.","Menjejak laluan laut Portugis ke Asia yang membawa mereka ke Melaka.","Early 16th century","Portuguese Malacca"],
+"Arrival of the Portuguese":["In 1511 a Portuguese fleet under Afonso de Albuquerque captured Melaka, beginning European colonial rule in the Malay world.","Pada 1511 armada Portugis di bawah Afonso de Albuquerque menawan Melaka, memulakan pemerintahan penjajah Eropah di dunia Melayu.","1511","Capture of Malacca (1511)"],
+"Voyage Map":["A map of the sea routes European ships used to reach the Malay Archipelago.","Peta laluan laut yang digunakan kapal Eropah untuk sampai ke Kepulauan Melayu.","16th-17th century","Age of Discovery"],
+"Malacca Changes Hands":["Melaka passed from the Portuguese to the Dutch in 1641, then to the British under the 1824 Anglo-Dutch Treaty.","Melaka berpindah daripada Portugis kepada Belanda pada 1641, kemudian kepada British menerusi Perjanjian Inggeris-Belanda 1824.","1511, 1641, 1824","Dutch Malacca"],
+"Kota Kuala Kedah Gate":["The gate of the old fort at the mouth of the Kedah River, which guarded the kingdom until Siam invaded in 1821.","Pintu kota lama di muara Sungai Kedah yang mengawal kerajaan sehingga Siam menyerang pada 1821.","Siamese invasion, 1821","Kota Kuala Kedah"],
+"British Arrival in Penang":["Francis Light took possession of Penang for the East India Company in 1786, beginning the British presence in the peninsula.","Francis Light mengambil alih Pulau Pinang bagi Syarikat Hindia Timur pada 1786, permulaan kehadiran British di semenanjung.","1786","Francis Light"],
+"Pangkor Treaty":["The 1874 agreement over the Perak succession that let Britain place a Resident in Perak, opening indirect rule in the Malay states. The treaty table is displayed in Gallery C.","Perjanjian 1874 mengenai penggantian takhta Perak yang membolehkan British menempatkan Residen di Perak, membuka pemerintahan tidak langsung di negeri Melayu. Meja perjanjian dipamerkan di Galeri C.","20 January 1874","Pangkor Treaty of 1874"],
+"Impact of Foreign Powers":["Explores how foreign rule reshaped politics, trade and society in the Malay states.","Meneroka bagaimana pemerintahan asing mengubah politik, perdagangan dan masyarakat di negeri Melayu.","16th-20th century","British Malaya"],
+"Tin Ore":["Tin from the Kinta Valley and elsewhere drove the colonial economy and drew in large numbers of workers.","Bijih timah dari Lembah Kinta dan tempat lain menggerakkan ekonomi penjajah dan menarik ramai pekerja.","19th-20th century","Tin mining in Malaysia"],
+"Economy":["Shows the colonial economy built on tin and rubber exports.","Menunjukkan ekonomi penjajah yang bergantung pada eksport bijih timah dan getah.","19th-20th century","Economic history of Malaysia"],
+"Tin Dredge":["Dredges scooped tin-bearing ground by machine, replacing earlier hand and gravel-pump mining from the early 1900s.","Kapal korek menggali tanah berbijih timah secara mesin, menggantikan perlombongan tangan dan pam kelikir dari awal 1900-an.","From 1912","Tin dredge"],
+"Education":["Looks at schooling under colonial rule, including Malay, English, Chinese and Tamil schools.","Melihat pendidikan di bawah pemerintahan penjajah, termasuk sekolah Melayu, Inggeris, Cina dan Tamil.","19th-20th century","Education in Malaysia"],
+"Japanese Occupation":["Japan invaded Malaya on 8 December 1941 and ruled until 1945, a time of hardship and changing political ideas.","Jepun menyerang Tanah Melayu pada 8 Disember 1941 dan memerintah hingga 1945, zaman kesusahan dan perubahan fikiran politik.","1941-1945","Japanese occupation of Malaya"],
+"National Freedom Fighters":["Honours leaders and ordinary people who resisted colonial rule and worked towards independence.","Menghormati pemimpin dan rakyat biasa yang menentang penjajahan dan berjuang untuk kemerdekaan.","Up to 1957","Independence of Malaya"]};
+const GI={dewan:["Central Hall: ticket counter, stairs and lift connect the museum levels. The building was completed in 1963, with traditional Malay architecture in the lobby.","Dewan Tengah: kaunter tiket, tangga dan lif menghubungkan tingkat muzium. Bangunan siap pada 1963, dengan seni bina Melayu tradisional di lobi."],
+a:["Early History: from the formation of the earth’s crust to the first communities of Malaysia.","Sejarah Awal: daripada pembentukan kerak bumi hingga komuniti pertama di Malaysia."],
+b:["Malay Kingdoms: the early Malay kingdoms, centred on the Melaka Sultanate of the 15th century.","Kerajaan Melayu: kerajaan Melayu awal, berpusat pada Kesultanan Melaka abad ke-15."],
+c:["Colonial Era: from the Portuguese conquest of Melaka in 1511 through Dutch, British and Japanese rule.","Era Kolonial: daripada penaklukan Melaka oleh Portugis pada 1511 hingga pemerintahan Belanda, British dan Jepun."],
+d:["Malaysia Today: the struggle for independence and the nation after 1957, including the original Federation of Malaya flag.","Malaysia Kini: perjuangan kemerdekaan dan negara selepas 1957, termasuk bendera asal Persekutuan Tanah Melayu."]};
+const V2={bm:{dt:"Tarikh penting",rm:"Baca lagi",mv:"Tandakan sudah dilawati",vd:"Sudah dilawati ✓",pv:"Sebelumnya",nx:"Seterusnya",pg:"Dilawati {a} daripada {b} pameran",sp:"Cari pameran",no:"Tiada padanan.",rh:"Cari laluan",go:"Tunjuk laluan",sw:"Tukar",cl:"Kosongkan",as:"Beberapa sambungan antara tingkat dianggar daripada pelan. Sila sahkan di lokasi.",sm:"Pilih dua tempat yang berbeza."},en:{dt:"Key dates",rm:"Read more",mv:"Mark as visited",vd:"Visited ✓",pv:"Previous",nx:"Next",pg:"Visited {a} of {b} exhibits",sp:"Search exhibits",no:"No matches.",rh:"Find a route",go:"Show route",sw:"Swap",cl:"Clear",as:"Some links between floors are inferred from the plans. Please confirm on site.",sm:"Choose two different places."}};
+let VS={};try{VS=JSON.parse(localStorage.getItem("mnv")||"{}")}catch(x){}
+function tv(k){VS[k]=!VS[k];try{localStorage.setItem("mnv",JSON.stringify(VS))}catch(x){}show(open)}
+// Positions re-read from the PDFs (C, D). Pokok Getah and the Staircase in C appear on the C plan but not in its label list.
+const CP={'Portuguese Voyages':[105,136],'Voyage Map':[132,176],'Arrival of the Portuguese':[58,215],'Malacca Changes Hands':[641,199],'Kota Kuala Kedah Gate':[768,195],'British Arrival in Penang':[871,271],'Pangkor Treaty':[1024,361],'Impact of Foreign Powers':[784,384],'Tin Ore':[598,285],'Economy':[398,260],'Tin Dredge':[438,295],'Education':[145,288],'Japanese Occupation':[92,387],'National Freedom Fighters':[92,272],'Exit':[22,341],'Ramp (Down)':[138,205],'Store':[72,419]};
+const gc=G.find(x=>x.id=='c');delete gc.gp;gc.m=gc.m.filter(m=>m[4]!='Lift');gc.m.forEach(m=>{const p=CP[m[4]];if(p){m[0]=p[0];m[1]=p[1]}});
+gc.m.push([645,371,0,'Pokok Getah','Rubber Tree'],[151,75,'S','Tangga (Turun)','Staircase (Down)'],[1000,56,'S','Tangga (Turun)','Stairs (Down)'],[768,70,'AHU','AHU','AHU']);
+G.find(x=>x.id=='d').m=[[199,253,0,'Bilik Tayangan','Screening Room'],[951,65,'S','Tangga (Turun)','Staircase (Down)'],[302,65,'AHU','AHU','AHU']];
+D['Rubber Tree']=['Rubber, planted widely from the early 1900s, became a major export alongside tin.','Getah, ditanam secara meluas dari awal 1900-an, menjadi eksport utama bersama bijih timah.','Early 20th century','Malaysian rubber industry'];
+// Routing. Link: [galleryA,pointA,galleryB,pointB,type,inferred]. Types: 0 doorway, 1 staircase (A is lower), 2 main stairs, 3 first-floor landing.
+// Links are inferred from matching stairs, lifts and edges on the plans (A+C share stair position; B+D are mirrored). Confirm on site.
+const LK=[['b',[1060,230],'dewan',[20,230],0,0],['dewan',[1075,230],'a',[20,230],0,0],['a',[55,63],'c',[151,75],1,0],['b',[962,50],'d',[951,65],1,0],['dewan',[950,230],'c',[22,341],2,1],['c',[22,341],'d',[1060,230],3,1]];
+const T=[['Leave {f} through the doorway into {t}.','Keluar dari {f} melalui pintu ke {t}.'],['Take the staircase {u} to {t}.','{U} tangga ke {t}.'],['Take the main stairs {u} to {t}.','{U} tangga utama ke {t}.'],['Walk across the first-floor landing to {t}.','Berjalan merentasi ruang tingkat satu ke {t}.']];
+let R=null,ri=0;
+const gn=id=>G.find(x=>x.id==id)[L];
+const path=(a,b)=>{const p=[a,[a[0],230],[b[0],230],b];return p.filter((q,k)=>!k||q[0]!=p[k-1][0]||q[1]!=p[k-1][1])};
+function plan(f,t){const dist={},prev={},todo=['dewan','a','b','c','d'];todo.forEach(k=>dist[k]=1e9);dist[f[0]]=0;
+while(todo.length){todo.sort((x,y)=>dist[x]-dist[y]);const u=todo.shift();if(u==t[0])break;LK.forEach(e=>[[0,2],[2,0]].forEach(([i,j])=>{const w=dist[u]+(e[5]?1.5:1);if(e[i]==u&&w<dist[e[j]]){dist[e[j]]=w;prev[e[j]]=[u,e,i]}}))}
+const eds=[];let c=t[0];while(c!=f[0]){const p=prev[c];if(!p)return null;eds.unshift(p);c=p[0]}
+const sm=G.find(x=>x.id==f[0]).m[f[1]],dm=G.find(x=>x.id==t[0]).m[t[1]],st=[];let cp=[sm[0],sm[1]];
+eds.forEach(([u,e,i],n)=>{const j=i?0:2;st.push({g:u,pts:path(cp,e[i+1]),ty:e[4],up:i==0,f:u,t:e[j],as:e[5],sm:n?0:sm});cp=e[j+1]});
+st.push({g:t[0],pts:path(cp,[dm[0],dm[1]]),ty:-1,dm:dm,as:0,sm:eds.length?0:sm});return st}
+function stext(s){const b=L=='bm';return (s.sm?(b?'Mulai di ':'Start at ')+nm(s.sm)+'. ':'')+(s.ty>=0?T[s.ty][b?1:0].replace('{t}',gn(s.t)).replace('{f}',gn(s.f)).replace('{u}',s.up?'up':'down').replace('{U}',s.up?'Naik':'Turun'):'')+(s.dm?(b?'Berjalan ke ':'Walk to ')+nm(s.dm)+'.':'')}
+function rlist(){const w=V2[L];$('ro').innerHTML=R==='same'?`<li class="note">${w.sm}</li>`:!R?'':R.map((s,k)=>`<li><button data-r="${k}" class="${k==ri?'on':''}"><b>${k+1}.</b> ${gn(s.g)}: ${stext(s)}</button></li>`).join('')+(R.some(s=>s.as)?`<li class="note">${w.as}</li>`:'')}
+function rsvg(){if(!Array.isArray(R))return '';let s='';R.forEach((t,k)=>{if(t.g!=cur)return;const a=t.pts[0],b=t.pts[t.pts.length-1];s+=`<polyline class="rt${k==ri?' on':''}" points="${t.pts.map(p=>p.join(',')).join(' ')}"/>`;if(k==0)s+=`<circle class="rs" cx="${a[0]}" cy="${a[1]}" r="12"/>`;if(k==R.length-1)s+=`<circle class="re" cx="${b[0]}" cy="${b[1]}" r="12"/>`});return s}
+function fillSel(){const o=G.map(g=>`<optgroup label="${g[L]}">`+g.m.map((m,i)=>m[2]===0||m[2]=='T'?`<option value="${g.id}:${i}">${nm(m)}</option>`:'').join('')+'</optgroup>').join('');[$('rf'),$('rt')].forEach(s=>{const v=s.value;s.innerHTML=o;if(v)s.value=v})}
+function route(){const a=$('rf').value.split(':'),b=$('rt').value.split(':');if($('rf').value==$('rt').value){R='same';rlist();draw();return}R=plan([a[0],+a[1]],[b[0],+b[1]]);ri=0;if(Array.isArray(R)){cur=R[0].g;open=-1;$('sheet').hidden=true;history.replaceState(null,'','#'+cur)}rlist();draw()}
+function rstep(k){ri=k;cur=R[k].g;history.replaceState(null,'','#'+cur);rlist();draw();$('map').scrollIntoView({block:'nearest'})}
+function swap(){const v=$('rf').value;$('rf').value=$('rt').value;$('rt').value=v;if(R)route()}
+function clr(){R=null;rlist();draw()}
+let L="bm",cur="a",open=-1;
+const $=i=>document.getElementById(i);
+const nm=m=>m[L=="bm"?3:4];
+function draw(){
+const u=U[L],g=G.find(x=>x.id==cur);
+document.documentElement.lang=L=="bm"?"ms":"en";document.title=u.t;
+$("t").textContent=u.t;$("s").textContent=u.s;$("x").textContent=u.cl;
+$("note").textContent=u.note+(g.gp?" "+u.gp:"");const w=V2[L];$("intro").textContent=GI[cur][L=="bm"?1:0];$("q").placeholder=w.sp;$("pg").textContent=w.pg.replace("{a}",Object.values(VS).filter(Boolean).length).replace("{b}",G.reduce((a,x)=>a+x.m.filter(y=>y[2]===0).length,0));
+document.querySelectorAll(".lang button").forEach(b=>b.className=b.dataset.l==L?"on":"");
+$("nav").innerHTML=G.map(x=>`<button data-g="${x.id}" class="${x.id==cur?"on":""}">${x[L]}</button>`).join("");
+let s=`<svg viewBox="0 0 1100 460" role="img" aria-label="${g[L]}"><rect class="fl" x="20" y="20" width="1060" height="420" rx="8"/>`;
+for(let i=1;i<g.c;i++){const x=20+1060*i/g.c;s+=`<line class="gr" x1="${x}" y1="20" x2="${x}" y2="440"/>`}
+for(let i=1;i<g.r;i++){const y=20+420*i/g.r;s+=`<line class="gr" x1="20" y1="${y}" x2="1080" y2="${y}"/>`}
+let n=0,ex="",fa="";
+g.m.forEach((m,i)=>{const e=m[2]===0,k=e?++n:m[2];
+s+=`<g class="pin${i==open?" sel":""}${VS[cur+":"+i]?" v":""}" data-i="${i}" tabindex="0" role="button" aria-label="${nm(m)}">`+(e?`<circle class="b" cx="${m[0]}" cy="${m[1]}" r="24"/>`:`<rect class="f" x="${m[0]-22}" y="${m[1]-22}" width="44" height="44" rx="9"/>`)+`<text x="${m[0]}" y="${m[1]}" dy=".35em">${k}</text></g>`;
+const li=`<li><button data-i="${i}"><span class="n${e?"":" fc"}">${k}</span>${nm(m)}</button></li>`;
+if(e)ex+=li;else fa+=li});
+$("map").innerHTML=s+rsvg()+"</svg>";fillSel();rlist();$("rh").textContent=w.rh;$("rg").textContent=w.go;$("rs").textContent=w.sw;$("rc").textContent=w.cl;
+$("hx").textContent=u.ex;$("hf").textContent=u.fa;
+$("ex").innerHTML=ex||`<li class="note">${u.ne}</li>`;$("fa").innerHTML=fa;
+}
+function show(i){
+const g=G.find(x=>x.id==cur),m=g.m[i],u=U[L],e=m[2]===0;open=i;
+const d=D[m[4]],w=V2[L],ix=g.m.map((x,k)=>x[2]===0?k:-1).filter(k=>k>=0),p=ix.indexOf(i),key=cur+":"+i;
+$("sc").innerHTML=`<p class="tag">${e?u.tx:u.tf} · ${g[L]}</p><h3>${nm(m)}</h3>`+(e?`<h4>${u.ab}</h4><p>${d?d[L=="bm"?1:0]:u.ph}</p><h4>${w.dt}</h4><p>${d?d[2]:u.aw}</p>`+(d&&d[3]?`<h4>${w.rm}</h4><p><a href="https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(d[3])}" target="_blank" rel="noopener">Wikipedia (EN)</a></p>`:"")+`<div class="nv"><button data-v="${key}">${VS[key]?w.vd:w.mv}</button>`+(p>0?`<button data-i="${ix[p-1]}">${w.pv}</button>`:"")+(p<ix.length-1?`<button data-i="${ix[p+1]}">${w.nx}</button>`:"")+`</div>`:`<p>${u.fd}</p>`);
+$("sheet").hidden=false;draw();
+}
+function hide(){open=-1;$("sheet").hidden=true;draw()}
+function go(id){cur=id;open=-1;$("sheet").hidden=true;history.replaceState(null,"","#"+id);draw()}
+document.addEventListener("click",e=>{
+const l=e.target.closest("[data-l]"),g=e.target.closest("[data-g]"),p=e.target.closest("[data-i]");
+if(l){L=l.dataset.l;open>=0?show(open):draw()}else if(g)go(g.dataset.g);else if(p)show(+p.dataset.i);else if(e.target.id=="x")hide();else if(e.target.dataset.v)tv(e.target.dataset.v);else if(e.target.id=="rg")route();else if(e.target.id=="rs")swap();else if(e.target.id=="rc")clr();else if(e.target.closest("[data-r]"))rstep(+e.target.closest("[data-r]").dataset.r);else{const q=e.target.closest("[data-s]");if(q){const a=q.dataset.s.split(":");cur=a[0];$("q").value="";$("res").innerHTML="";history.replaceState(null,"","#"+cur);show(+a[1])}}});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")hide();if((e.key=="Enter"||e.key==" ")&&e.target.dataset&&e.target.dataset.i&&e.target.tagName=="g"){e.preventDefault();show(+e.target.dataset.i)}});
+addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(G.some(x=>x.id==h))go(h)});
+const h0=location.hash.slice(1);if(G.some(x=>x.id==h0))cur=h0;
+fillSel();$("rf").value="a:3";$("rt").value="b:1";$("q").oninput=function(){const t=this.value.trim().toLowerCase(),r=[];if(t)G.forEach(g=>g.m.forEach((m,i)=>{if(m[2]===0&&(m[3]+" "+m[4]).toLowerCase().includes(t))r.push(`<li><button data-s="${g.id}:${i}"><span class="n">${g.id.slice(0,1).toUpperCase()}</span>${nm(m)}</button></li>`)}));$("res").innerHTML=r.slice(0,8).join("")||(t?`<li class="note">${V2[L].no}</li>`:"")};
+draw();
+</script></body></html>
